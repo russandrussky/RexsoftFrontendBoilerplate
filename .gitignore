@@ -2,7 +2,7 @@
 /.idea
 node_modules
 GruntTemplate.zip
-*.html
+/*.html
 css
 js/libs.js
 js/production.min.js
