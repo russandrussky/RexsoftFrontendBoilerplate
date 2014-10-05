@@ -1,0 +1,89 @@
+.bsh(@shadow) {
+  -webkit-box-shadow: @shadow;
+  -moz-box-shadow: @shadow;
+  box-shadow: @shadow;
+}
+.bsh(none) {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.tn(@transition: all 200ms ease) {
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -ms-transition: @transition;
+  -o-transition: @transition;
+  transition: @transition;
+}
+
+/* sizing
+-----------------------------------------------------------------------------*/
+.bxz(@sizing: border-box) {
+  -webkit-box-sizing: @sizing;
+  -moz-box-sizing: @sizing;
+  box-sizing: @sizing;
+}
+
+/* opacity
+-----------------------------------------------------------------------------*/
+.op(@val: 0) {
+  -webkit-opacity: @val;
+  -moz-opacity: @val;
+  opacity: @val;
+  @opperc: @val * 100;
+  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+  filter: ~"alpha(opacity=@{opperc})";
+}
+/* user select
+-----------------------------------------------------------------------------*/
+.us(@selection: red) when (iscolor(@selection)) {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  cursor: auto;
+  &::selection {
+    background-color: fade(@selection, 99%);
+    color: #ffffff;
+  }
+  &::-moz-selection {
+    background-color: @selection;
+    color: #ffffff;
+  }
+}
+.us(none) {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
+}
+
+/* gradients
+-----------------------------------------------------------------------------*/
+#gradient {
+  .horizontal(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+    background-image:            svg-gradient(to right, @start-color @start-percent, @end-color @end-percent); // IE9
+    background-image: -webkit-linear-gradient(    left, @start-color @start-percent, @end-color @end-percent); // Safari 5.1-6, Chrome 10+
+    background-image:    -moz-linear-gradient(    left, @start-color @start-percent, @end-color @end-percent); // FF3.6+
+    background-image:     -ms-linear-gradient(    left, @start-color @start-percent, @end-color @end-percent); // IE10+
+    background-image:      -o-linear-gradient(    left, @start-color @start-percent, @end-color @end-percent); // Opera 12
+    background-image:         linear-gradient(to right, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background-repeat: repeat-x;
+    .lt-ie-9 & {
+      filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE8 and down
+    }
+  }
+  .vertical(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+    background-image:            svg-gradient(to bottom, @start-color @start-percent, @end-color @end-percent); // IE9
+    background-image: -webkit-linear-gradient(      top, @start-color @start-percent, @end-color @end-percent); // Safari 5.1-6, Chrome 10+
+    background-image:    -moz-linear-gradient(      top, @start-color @start-percent, @end-color @end-percent); // FF3.6+
+    background-image:     -ms-linear-gradient(      top, @start-color @start-percent, @end-color @end-percent); // IE10+
+    background-image:      -o-linear-gradient(      top, @start-color @start-percent, @end-color @end-percent); // Opera 12
+    background-image:         linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    background-repeat: repeat-x;
+    .lt-ie-9 & {
+      filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE8 and down
+    }
+  }
+}

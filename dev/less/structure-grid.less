@@ -1,0 +1,60 @@
+.grid__system(@grid-columns: 12, @grid-gutter: 20px) {
+  @grid-width: 100%/@grid-columns;
+
+  /* Containers
+  ----------------------------------------------------------------------------------------------------*/
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: (@grid-gutter / 2);
+    padding-right: (@grid-gutter / 2);
+    width: @widthContent;
+    .bxz;
+    .clearfix;
+    .row {
+      margin-left: -(@grid-gutter / 2);
+      margin-right: -(@grid-gutter / 2);
+      .clearfix;
+    }
+  }
+
+  /* Columns
+  ----------------------------------------------------------------------------------------------------*/
+  [class|=col] {
+    min-height: 1px;
+    padding-left: (@grid-gutter / 2);
+    padding-right: (@grid-gutter / 2);
+    .bxz;
+    .pr;
+    .fl;
+  }
+  .make-grid(@index) when (@index > 0) {
+    .col-@{index} {
+      width: @grid-width*@index;
+    }
+    .make-grid(@index - 1);
+  }
+  .container {
+    .make-grid(@grid-columns);
+  }
+
+  /* Extra Space
+  ----------------------------------------------------------------------------------------------------*/
+  .make-extra-space(@index) when (@index > 0) {
+    .col-offset-@{index} {
+      margin-left: @grid-width*@index;
+    }
+    .col-push-@{index} {
+      left: @grid-width*@index;
+    }
+    .col-pull-@{index} {
+      left: -(@grid-width*@index);
+    }
+    .make-extra-space(@index - 1);
+  }
+  .container {
+    .make-extra-space(@grid-columns - 1);
+  }
+}
+
+.grid__system();

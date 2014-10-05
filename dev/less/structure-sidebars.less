@@ -1,0 +1,95 @@
+@widthSidebarLeft: 200px;
+@offsetSidebarLeft: 20px;
+@widthSidebarRight: 300px;
+@offsetSidebarRight: 20px;
+
+.container {
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  .clearfix;
+  .pr;
+}
+
+/* Has sidebar
+-----------------------------------------------------------------------------*/
+[class*=has__sidebar] {
+  .pr;
+  .middle__container {
+    width: 100%;
+    .fl;
+    .middle__content {
+      padding: 0;
+    }
+  }
+  &.has__sidebar {
+    &-left {
+      .middle__content {
+        padding: 0 0 0 @widthSidebarLeft+@offsetSidebarLeft;
+      }
+    }
+    &-right {
+      .middle__content {
+        padding: 0 @widthSidebarRight+@offsetSidebarRight 0 0;
+      }
+    }
+    &-both {
+      .middle__content {
+        padding: 0 @widthSidebarRight+@offsetSidebarRight 0 @widthSidebarLeft+@offsetSidebarLeft;
+      }
+    }
+    &-both-right {
+      .middle__content {
+        padding: 0 @widthSidebarLeft+@widthSidebarRight+@offsetSidebarRight 0 0;
+      }
+      .sidebar-left {
+        margin-left: -(@widthSidebarLeft+@widthSidebarRight);
+        &.before__content {
+          left: 100%;
+        }
+      }
+    }
+    &-both-left {
+      .middle__content {
+        padding: 0 0 0 @widthSidebarLeft+@widthSidebarRight+@offsetSidebarLeft;
+      }
+      .sidebar-right {
+        margin-left: -100%;
+        left: @widthSidebarLeft;
+        &.before__content {
+          .fl;
+          margin-left: 0;
+          + .middle__container {
+            margin-left: -@widthSidebarRight;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* sidebars
+-----------------------------------------------------------------------------*/
+[class|=sidebar] {
+  .fl;
+  .pr;
+}
+.sidebar {
+  &-left {
+    width: @widthSidebarLeft;
+    margin-left: -100%;
+    &.before__content {
+      margin-left: 0;
+      margin-right: -@widthSidebarLeft;
+    }
+  }
+  &-right {
+    width: @widthSidebarRight;
+    margin-right: -3px;
+    margin-left: -@widthSidebarRight;
+    &.before__content {
+      margin-right: 0;
+      .fr;
+    }
+  }
+}

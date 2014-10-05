@@ -1,0 +1,106 @@
+@baseFontSize: 12px;
+@baseLineHeight: 18/12;
+
+body, input, button, select, textarea {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: @baseFontSize;
+}
+body {
+  line-height: @baseLineHeight;
+}
+a {
+  color: @colorLink;
+  outline: none;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
+  &:visited {
+  }
+}
+img {
+  border: none;
+  vertical-align: top;
+  max-width: 100%;
+  height: auto;
+}
+h1, h2, h3, h4, h4, h5, h6,
+p, ul, ol, table {
+  margin-bottom: @baseFontSize*@baseLineHeight;
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+}
+h1 {
+  font-size: @baseFontSize+10;
+}
+h2 {
+  font-size: @baseFontSize+8;
+}
+h3 {
+  font-size: @baseFontSize+6;
+}
+h4 {
+  font-size: @baseFontSize+4;
+}
+h5 {
+  font-size: @baseFontSize+2;
+}
+h6 {
+}
+ul, ol {
+  &.unstyled {
+    list-style: none;
+  }
+}
+.text {
+  &-left {
+    text-align: left;
+  }
+  &-center {
+    text-align: center;
+  }
+  &-right {
+    text-align: right;
+  }
+  &-justify {
+    text-align: justify;
+  }
+}
+pre, code {
+  font-family: monospace;
+}
+
+.text__content {
+  h1, h2, h3, h4, h4, h5, h6 {
+  }
+  h1 {
+  }
+  h2 {
+  }
+  h3 {
+  }
+  h4 {
+  }
+  h5 {
+  }
+  h6 {
+  }
+  ul {
+    li {
+    }
+  }
+  ol {
+    li {
+    }
+  }
+  table {
+    th, td {
+    }
+    th {
+    }
+    td {
+    }
+  }
+}

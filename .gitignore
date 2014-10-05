@@ -1,0 +1,9 @@
+# Lines starting with '#' are considered comments.
+/.idea
+node_modules
+GruntTemplate.zip
+*.html
+css
+js/libs.js
+js/production.min.js
+dev/js/production.js

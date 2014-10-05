@@ -1,0 +1,34 @@
+/* Common classes
+-----------------------------------------------------------------------------*/
+.clear {
+  clear: both;
+}
+.clearfix {
+  &:after {
+    content: '';
+    clear: both;
+    display: table;
+    width: 100%;
+  }
+}
+.webkitFlickerFix {
+  -webkit-backface-visibility: hidden;
+}
+.pa {
+  position: absolute;
+}
+.pr {
+  position: relative;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+/* transitions
+-----------------------------------------------------------------------------*/
+a, a *, a:before, a:after {
+  .tn();
+}
