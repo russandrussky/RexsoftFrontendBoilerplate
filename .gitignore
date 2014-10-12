@@ -8,4 +8,4 @@ js/libs.js
 js/production.min.js
 dev/js/production.js
 dev/js/lib
-!readme.html
+readme.html
