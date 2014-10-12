@@ -24,6 +24,17 @@ module.exports = function (grunt) {
           "/css/ie8.css": "/dev/less/ie8.less",
           "/css/style.css": "/dev/less/style.less"
         }
+      },
+      beautify: {
+        options: {
+          compress: false,
+          sourceMap: false,
+          relativeUrls: true
+        },
+        files: {
+          "/css/ie8.css": "/dev/less/ie8.less",
+          "/css/style.css": "/dev/less/style.less"
+        }
       }
     },
     concat: {
@@ -141,5 +152,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-html-build');
   grunt.registerTask('development', ['concat:development', 'less:development', 'htmlbuild', 'replace:html', 'watch']);
   grunt.registerTask('production', ['concat:production', 'uglify:production', 'less:production', 'htmlbuild', 'replace:html', 'replace:production']);
-  grunt.registerTask('productionFinal', ['concat:production', 'uglify:production', 'less:production', 'htmlbuild', 'replace']);
+  grunt.registerTask('production-compress', ['concat:production', 'uglify:production', 'less:production', 'htmlbuild', 'replace']);
+  grunt.registerTask('css-beautify', ['less:beautify']);
 };
