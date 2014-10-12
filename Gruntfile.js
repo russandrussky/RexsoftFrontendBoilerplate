@@ -6,13 +6,12 @@ module.exports = function (grunt) {
         options: {
           compress: true,
           sourceMap: true,
-          relativeUrls: true,
-          sourceMapFilename: '/css/style.css.map',
+          sourceMapFilename: 'css/style.css.map',
           sourceMapURL: 'style.css.map'
         },
         files: {
-          "/css/ie8.css": "/dev/less/ie8.less",
-          "/css/style.css": "/dev/less/style.less"
+          "css/ie8.css": "dev/less/ie8.less",
+          "css/style.css": "dev/less/style.less"
         }
       },
       production: {
@@ -21,8 +20,8 @@ module.exports = function (grunt) {
           cleancss: true
         },
         files: {
-          "/css/ie8.css": "/dev/less/ie8.less",
-          "/css/style.css": "/dev/less/style.less"
+          "css/ie8.css": "dev/less/ie8.less",
+          "css/style.css": "dev/less/style.less"
         }
       },
       beautify: {
@@ -32,8 +31,8 @@ module.exports = function (grunt) {
           relativeUrls: true
         },
         files: {
-          "/css/ie8.css": "/dev/less/ie8.less",
-          "/css/style.css": "/dev/less/style.less"
+          "css/ie8.css": "dev/less/ie8.less",
+          "css/style.css": "dev/less/style.less"
         }
       }
     },
@@ -80,6 +79,14 @@ module.exports = function (grunt) {
       }
     },
     replace: {
+      css: {
+        src: ['css/style.css', 'css/ie8.css'],
+        dest: 'css/',
+        replacements: [{
+          from: /(\.\.\/)+css\//g,
+          to: ''
+        }]
+      },
       html: {
         src: ['./*.html'],
         dest: './',
@@ -150,8 +157,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-html-build');
-  grunt.registerTask('development', ['concat:development', 'less:development', 'htmlbuild', 'replace:html', 'watch']);
-  grunt.registerTask('production', ['concat:production', 'uglify:production', 'less:production', 'htmlbuild', 'replace:html', 'replace:production']);
+  grunt.registerTask('development', ['concat:development', 'less:development', 'htmlbuild', 'replace:css', 'replace:html', 'watch']);
+  grunt.registerTask('production', ['concat:production', 'uglify:production', 'less:production', 'htmlbuild', 'replace:css', 'replace:html', 'replace:production']);
   grunt.registerTask('production-compress', ['concat:production', 'uglify:production', 'less:production', 'htmlbuild', 'replace']);
-  grunt.registerTask('css-beautify', ['less:beautify']);
+  grunt.registerTask('css-beautify', ['less:beautify', 'replace:css']);
 };
