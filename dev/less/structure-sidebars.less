@@ -7,59 +7,59 @@
   margin: 0 auto;
   padding-left: 10px;
   padding-right: 10px;
-  .clearfix;
+  .clear-fix;
   .pr;
 }
 
 /* Has sidebar
 -----------------------------------------------------------------------------*/
-[class*=has__sidebar] {
+[class*=has-sidebar] {
   .pr;
-  .middle__container {
+  .middle-container {
     width: 100%;
     .fl;
-    .middle__content {
+    .middle-content {
       padding: 0;
     }
   }
-  &.has__sidebar {
+  &.has-sidebar {
     &-left {
-      .middle__content {
+      .middle-content {
         padding: 0 0 0 @widthSidebarLeft+@offsetSidebarLeft;
       }
     }
     &-right {
-      .middle__content {
+      .middle-content {
         padding: 0 @widthSidebarRight+@offsetSidebarRight 0 0;
       }
     }
     &-both {
-      .middle__content {
+      .middle-content {
         padding: 0 @widthSidebarRight+@offsetSidebarRight 0 @widthSidebarLeft+@offsetSidebarLeft;
       }
     }
     &-both-right {
-      .middle__content {
+      .middle-content {
         padding: 0 @widthSidebarLeft+@widthSidebarRight+@offsetSidebarRight 0 0;
       }
       .sidebar-left {
         margin-left: -(@widthSidebarLeft+@widthSidebarRight);
-        &.before__content {
+        &.before-content {
           left: 100%;
         }
       }
     }
     &-both-left {
-      .middle__content {
+      .middle-content {
         padding: 0 0 0 @widthSidebarLeft+@widthSidebarRight+@offsetSidebarLeft;
       }
       .sidebar-right {
         margin-left: -100%;
         left: @widthSidebarLeft;
-        &.before__content {
+        &.before-content {
           .fl;
           margin-left: 0;
-          + .middle__container {
+          + .middle-container {
             margin-left: -@widthSidebarRight;
           }
         }
@@ -78,7 +78,7 @@
   &-left {
     width: @widthSidebarLeft;
     margin-left: -100%;
-    &.before__content {
+    &.before-content {
       margin-left: 0;
       margin-right: -@widthSidebarLeft;
     }
@@ -87,7 +87,7 @@
     width: @widthSidebarRight;
     margin-right: -3px;
     margin-left: -@widthSidebarRight;
-    &.before__content {
+    &.before-content {
       margin-right: 0;
       .fr;
     }

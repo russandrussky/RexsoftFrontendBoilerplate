@@ -5,7 +5,7 @@ $(function() {
 // footer
 //-----------------------------------------------------------------------------
   var
-    $pageWrapper = $('#pageWrapper'),
+    $pageWrapper = $('#page-wrapper'),
     footer  = {
       $element: $('#footer'),
       height: null,
