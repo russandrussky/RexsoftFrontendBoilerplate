@@ -10,7 +10,6 @@ module.exports = function (grunt) {
           sourceMapURL: 'style.css.map'
         },
         files: {
-          "css/ie8.css": "dev/less/ie8.less",
           "css/style.css": "dev/less/style.less"
         }
       },
@@ -20,7 +19,6 @@ module.exports = function (grunt) {
           cleancss: true
         },
         files: {
-          "css/ie8.css": "dev/less/ie8.less",
           "css/style.css": "dev/less/style.less"
         }
       },
@@ -31,7 +29,6 @@ module.exports = function (grunt) {
           relativeUrls: true
         },
         files: {
-          "css/ie8.css": "dev/less/ie8.less",
           "css/style.css": "dev/less/style.less"
         }
       }
@@ -80,7 +77,7 @@ module.exports = function (grunt) {
     },
     replace: {
       css: {
-        src: ['css/style.css', 'css/ie8.css'],
+        src: ['css/style.css'],
         dest: 'css/',
         replacements: [{
           from: /(\.\.\/)+css\//g,
