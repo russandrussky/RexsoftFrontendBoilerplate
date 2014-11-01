@@ -30,4 +30,6 @@ var ieDetector = {
     }
   }
 };
-ieDetector.addClasses();
+if(ieDetector.ieVersion) {
+  ieDetector.addClasses();
+}
