@@ -38,11 +38,13 @@ input[type=number], input[type=range], input[type=color] {
   border: 1px solid #ccc;
   border-radius: 0;
   box-shadow: none;
+  width: 100%;
+  box-sizing: border-box;
   &:read-only {
   }
 }
 textarea {
-
+  overflow: auto;
 }
 input[type=text], input[type=password],
 input[type=email], input[type=search], input[type=tel], input[type=url],
