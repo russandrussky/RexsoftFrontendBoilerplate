@@ -25,8 +25,7 @@ module.exports = function (grunt) {
       beautify: {
         options: {
           compress: false,
-          sourceMap: false,
-          relativeUrls: true
+          sourceMap: false
         },
         files: {
           "css/style.css": "dev/less/style.less"
@@ -76,14 +75,6 @@ module.exports = function (grunt) {
       }
     },
     replace: {
-      css: {
-        src: ['css/style.css'],
-        dest: 'css/',
-        replacements: [{
-          from: /(\.\.\/)+css\//g,
-          to: ''
-        }]
-      },
       html: {
         src: ['./*.html'],
         dest: './',
@@ -91,8 +82,8 @@ module.exports = function (grunt) {
           from: /(\.\.\/)+/g,
           to: ''
         },{
-          from: '.css',
-          to: '.css?v=' + new Date().getTime()
+          from: '.css"/>',
+          to: '.css?v=' + new Date().getTime() + '"/>'
         },{
           from: 'common.js',
           to: 'common.js?v=' + new Date().getTime()
@@ -132,7 +123,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['dev/less/*.less'],
-        tasks: ['less:development', 'replace:css'],
+        tasks: ['less:development'],
         options: {
           livereload: true,
           spawn: false
@@ -146,6 +137,24 @@ module.exports = function (grunt) {
           spawn: false
         }
       }
+    },
+    postcss: {
+      options: {
+        map: true,
+        processors: [
+          require('autoprefixer-core')({
+            browsers: ['last 2 version', 'ie 8', 'ie 9', 'ie 10', 'ie 11']
+          }).postcss,
+          require('postcss-urlrewrite')({
+            imports: true,
+            properties: [ 'background', 'content' ],
+            rules: [{ from: /(\.\.\/)+css\//, to: '' }]
+          })
+        ]
+      },
+      dist: {
+        src: 'css/style.css'
+      }
     }
   });
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -154,8 +163,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-text-replace');
   grunt.loadNpmTasks('grunt-html-build');
-  grunt.registerTask('development', ['concat:development', 'less:development', 'htmlbuild', 'replace:css', 'replace:html', 'watch']);
-  grunt.registerTask('production', ['concat:production', 'uglify:production', 'less:production', 'htmlbuild', 'replace:css', 'replace:html', 'replace:production']);
-  grunt.registerTask('production-compress', ['concat:production', 'uglify:production', 'less:production', 'htmlbuild', 'replace']);
-  grunt.registerTask('css-beautify', ['less:beautify', 'replace:css']);
+  grunt.loadNpmTasks('grunt-postcss');
+  grunt.registerTask('development', ['concat:development', 'less:development', 'postcss', 'htmlbuild', 'replace:html', 'watch']);
+  grunt.registerTask('production', ['concat:production', 'uglify:production', 'less:production', 'postcss', 'htmlbuild', 'replace:html', 'replace:production']);
+  grunt.registerTask('production-compress', ['concat:production', 'uglify:production', 'less:production', 'postcss', 'htmlbuild', 'replace']);
+  grunt.registerTask('css-beautify', ['less:beautify', 'postcss']);
 };
