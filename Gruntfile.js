@@ -123,7 +123,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['dev/less/*.less'],
-        tasks: ['less:development'],
+        tasks: ['less:development', 'postcss'],
         options: {
           livereload: true,
           spawn: false
