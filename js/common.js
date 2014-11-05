@@ -20,7 +20,7 @@ if(!Modernizr.flexbox || ieDetector.ieVersion) {
             $pageWrapper.append(self.$preFooter);
           }
           self.$preFooter.height(self.height);
-          self.$element.css({top: -self.height});
+          self.$element.css({marginTop: -self.height});
         }
       };
 

@@ -22,14 +22,17 @@ var ieDetector = {
       else
         document.documentElement.className += ' ' + className;
     };
-    this.ieVersion = this.getVersion();
     addClass('ie-' + this.ieVersion);
     addClass('lte-ie-' + this.ieVersion);
     for(var i = this.ieVersion+1; i <= 11; i++) {
       addClass('lt-ie-' + i);
     }
+  },
+  init: function() {
+    this.ieVersion = this.getVersion();
+    if(this.ieVersion) {
+      this.addClasses();
+    }
   }
 };
-if(ieDetector.ieVersion) {
-  ieDetector.addClasses();
-}
+ieDetector.init();

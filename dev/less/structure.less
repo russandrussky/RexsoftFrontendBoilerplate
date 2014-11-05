@@ -7,13 +7,14 @@ html {
 }
 body {
   min-height: 100%;
-  :not(.lte-ie-11) & {
+  background-color: blue;
+  :not(.lte-ie-11) &, :not(.lt-ie-11) & {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  .no-flexbox &, .lte-ie-11 & {
+  .no-flexbox &, .lte-ie-11 &, .lt-ie-11 & {
     height: 100%;
   }
 }
@@ -22,12 +23,12 @@ body {
   min-width: @widthPageMin;
   width: 100%;
   margin: 0 auto;
-  .no-flexbox &, .lte-ie-11 & {
+  .no-flexbox &, .lte-ie-11 &, .lt-ie-11 & {
     width: auto;
   }
 }
 .page-wrapper {
-  .no-flexbox &, .lte-ie-11 & {
+  .no-flexbox &, .lte-ie-11 &, .lt-ie-11 & {
     width: auto;
     min-height: 100%;
     height: auto !important;
@@ -35,6 +36,7 @@ body {
   }
 }
 .footer {
+  background-color: red;
 }
 .wrapper {
   .pr;
