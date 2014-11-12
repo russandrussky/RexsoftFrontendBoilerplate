@@ -115,7 +115,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['dev/less/*.less'],
-        tasks: ['less:development', 'postcss:development'],
+        tasks: ['less:development', 'postcss'],
         options: {
           livereload: true,
           spawn: false
@@ -131,41 +131,21 @@ module.exports = function (grunt) {
       }
     },
     postcss: {
-      development: {
-        options: {
-          map: true,
-          processors: [
-            require('autoprefixer-core')({
-              browsers: ['last 2 version', 'ie 8', 'ie 9', 'ie 10', 'ie 11']
-            }).postcss,
-            require('postcss-urlrewrite')({
-              imports: true,
-              properties: [ 'background', 'background-image', 'content' ],
-              rules: [{ from: /(\.\.\/)+css\//, to: '' }]
-            })
-          ]
-        },
-        dist: {
-          src: 'css/style.css'
-        }
+      options: {
+        map: true,
+        processors: [
+          require('autoprefixer-core')({
+            browsers: ['last 2 version', 'Firefox ESR', 'Opera 12.1', 'ie 8', 'ie 9', 'ie 10', 'ie 11']
+          }).postcss,
+          require('postcss-urlrewrite')({
+            imports: true,
+            properties: [ 'background', 'background-image', 'content', 'src' ],
+            rules: [{ from: /(\.\.\/)+css\//, to: '' }]
+          })
+        ]
       },
-      production: {
-        options: {
-          map: false,
-          processors: [
-            require('autoprefixer-core')({
-              browsers: ['last 2 version', 'ie 8', 'ie 9', 'ie 10', 'ie 11']
-            }).postcss,
-            require('postcss-urlrewrite')({
-              imports: true,
-              properties: [ 'background', 'background-image', 'content', 'src' ],
-              rules: [{ from: /(\.\.\/)+css\//, to: '' }]
-            })
-          ]
-        },
-        dist: {
-          src: 'css/style.css'
-        }
+      dist: {
+        src: './css/style.css'
       }
     },
     csso: {
@@ -192,8 +172,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-csso');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.registerTask('development', ['concat:development', 'less:development', 'postcss:development', 'htmlbuild', 'replace:html', 'watch']);
-  grunt.registerTask('production', ['concat:production', 'uglify:production', 'less:development', 'postcss:production', 'htmlbuild', 'replace:html', 'replace:production', 'cssmin:production']);
-  grunt.registerTask('production-compress', ['concat:production', 'uglify:production', 'less:development', 'postcss:production', 'htmlbuild', 'replace', 'cssmin:production']);
-  grunt.registerTask('css-beautify', ['less:beautify', 'postcss:production']);
+  grunt.registerTask('development', ['concat:development', 'less:development', 'postcss', 'htmlbuild', 'replace:html', 'watch']);
+  grunt.registerTask('production', ['concat:production', 'uglify:production', 'less:development', 'postcss', 'htmlbuild', 'replace:html', 'replace:production', 'cssmin:production']);
+  grunt.registerTask('production-compress', ['concat:production', 'uglify:production', 'less:development', 'postcss', 'htmlbuild', 'replace', 'cssmin:production']);
+  grunt.registerTask('css-beautify', ['less:beautify', 'postcss']);
 };
