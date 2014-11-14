@@ -7,14 +7,13 @@ html {
 }
 body {
   min-height: 100%;
-  :not(.lte-ie-11) &, :not(.lt-ie-11) & {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .no-flexbox &, .lte-ie-11 &, .lt-ie-11 & {
     height: 100%;
+    display: block !important;
   }
 }
 .page-wrapper, .footer {
