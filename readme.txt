@@ -12,6 +12,6 @@
 └ js
   ├ common.js                — основной js-файл проекта
   ├ libs.js                  — объедененные в один файл ['dev/js/jquery-1.11.1.min.js', 'dev/js/lib/*.js']
-  ├ modernizr.js             — modernizr[SVG, Modernizr.prefixed()]
+  ├ modernizr.js             — modernizr[SVG, flexbox, css-vhunit, Modernizr.prefixed()]
   ├ ie-detector.js           — определение версии ІЕ, если запущено на ІЕ
   └ production.min.js        — сжатый 'dev/js/production.js'

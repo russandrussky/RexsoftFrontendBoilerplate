@@ -6,12 +6,9 @@ html {
   height: 100%;
 }
 body {
-  min-height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  .no-flexbox &, .lte-ie-11 &, .lt-ie-11 & {
+  .no-flexbox & {
+    min-height: 100%;
     height: 100%;
     display: block !important;
   }
@@ -21,16 +18,29 @@ body {
   min-width: @widthPageMin;
   width: 100%;
   margin: 0 auto;
-  .no-flexbox &, .lte-ie-11 &, .lt-ie-11 & {
+  .no-flexbox & {
     width: auto;
   }
 }
 .page-wrapper {
-  .no-flexbox &, .lte-ie-11 &, .lt-ie-11 & {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  .lte-ie-11 &, .lt-ie-11 & {
+    min-height: 0;
+  }
+  .no-flexbox & {
+    display: block !important;
     width: auto;
     min-height: 100%;
     height: auto !important;
     height: 100%;
+  }
+}
+.page-body {
+  flex: 1;
+  &.flex-none {
+    flex: none;
   }
 }
 .footer {

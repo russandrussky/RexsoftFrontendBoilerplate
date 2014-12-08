@@ -17,10 +17,12 @@ var ieDetector = {
   },
   addClasses: function() {
     var addClass = function(className) {
-      if (document.documentElement.classList)
+      if (document.documentElement.classList) {
         document.documentElement.classList.add(className);
-      else
+      }
+      else {
         document.documentElement.className += ' ' + className;
+      }
     };
     addClass('ie-' + this.ieVersion);
     addClass('lte-ie-' + this.ieVersion);

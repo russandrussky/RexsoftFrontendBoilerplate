@@ -4,7 +4,7 @@ if(!window.console.log) window.console.log = function() {};
 
 // footer
 //-----------------------------------------------------------------------------
-if(!Modernizr.flexbox || ieDetector.ieVersion) {
+if(!Modernizr.flexbox) {
   (function() {
     var
       $pageWrapper = $('#page-wrapper'),
@@ -21,6 +21,8 @@ if(!Modernizr.flexbox || ieDetector.ieVersion) {
           }
           self.$preFooter.height(self.height);
           self.$element.css({marginTop: -self.height});
+          $pageWrapper.after(self.$element);
+          //.remove();
         }
       };
 
@@ -31,6 +33,26 @@ if(!Modernizr.flexbox || ieDetector.ieVersion) {
       resize: function () {
         footer.place();
       }
+    });
+  })();
+}
+if(ieDetector.ieVersion == 10 || ieDetector.ieVersion == 11) {
+  (function(){
+    var
+      $pageWrapper = $('#page-wrapper'),
+      $pageBody = $('#page-body'),
+      ieFlexboxFix = function() {
+        console.log($pageBody.addClass('flex-none').height(), $(window).height());
+        if($pageBody.addClass('flex-none').height() + $('#header').height() + $('#footer').height() < $(window).height()) {
+          $pageWrapper.height($(window).height());
+          $pageBody.removeClass('flex-none');
+        } else {
+          $pageWrapper.height('auto');
+        }
+      };
+    ieFlexboxFix();
+    $(window).on('resize', function () {
+      ieFlexboxFix();
     });
   })();
 }
