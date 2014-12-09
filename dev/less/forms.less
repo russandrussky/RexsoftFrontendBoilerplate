@@ -49,19 +49,14 @@ textarea {
 input[type=text], input[type=password],
 input[type=email], input[type=search], input[type=tel], input[type=url],
 textarea {
-  &::-webkit-input-placeholder {  /* WebKit browsers */
-  }
-  &::-moz-placeholder {           /* Mozilla Firefox 19+ */
-  }
-  &:-moz-placeholder {            /* Mozilla Firefox 4 to 18 */
-  }
-  &:-ms-input-placeholder {       /* Internet Explorer 10+ */
+  &::placeholder {
   }
 }
 input[type=button], input[type=reset], input[type=submit], button {
   -webkit-appearance: button;
   cursor: pointer;
-  &::-moz-focus-inner {           /*Remove button padding in FF*/
+//  Remove button padding in FF
+  &::-moz-focus-inner {
     border: 0;
     padding: 0;
   }
