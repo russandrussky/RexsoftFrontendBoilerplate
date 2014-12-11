@@ -4,10 +4,11 @@
 @offsetSidebarRight: 20px;
 
 .container {
+  width: @widthContent;
   margin: 0 auto;
   padding-left: 10px;
   padding-right: 10px;
-  .clear-fix;
+  &:extend(.clear-fix all);
   .pr;
 }
 

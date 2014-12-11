@@ -1,4 +1,4 @@
-.grid__system(@grid-columns: 12, @grid-gutter: 20px) {
+.grid-system(@grid-columns: 12, @grid-gutter: 20px) {
   @grid-width: @widthContent/@grid-columns;
 
   /* Containers
@@ -9,22 +9,22 @@
     padding-left: (@grid-gutter / 2);
     padding-right: (@grid-gutter / 2);
     width: @widthContent;
-    .bxz;
-    .clear-fix;
+    box-sizing: border-box;
+    &:extend(.clear-fix all);
     .row {
       margin-left: -(@grid-gutter / 2);
       margin-right: -(@grid-gutter / 2);
-      .clear-fix;
+      &:extend(.clear-fix all);
     }
   }
 
   /* Columns
   ----------------------------------------------------------------------------------------------------*/
-  [class|=col-px] {
+  [class|=col-px], [class*=col-px-] {
     min-height: 1px;
     padding-left: (@grid-gutter / 2);
     padding-right: (@grid-gutter / 2);
-    .bxz;
+    box-sizing: border-box;
     .pr;
     .fl;
   }
@@ -57,4 +57,4 @@
   }
 }
 
-.grid__system();
+.grid-system();
