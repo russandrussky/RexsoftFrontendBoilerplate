@@ -29,6 +29,9 @@ table {
 }
 blockquote, q {
   quotes: none;
+  &:before, &:after {
+    content: '';
+  }
 }
 input, textarea, a, button, select {
   &:focus {
