@@ -32,14 +32,13 @@ input[type=email], input[type=search], input[type=tel], input[type=url],
 textarea,
 input[type=date], input[type=datetime], input[type=datetime-local], input[type=month], input[type=time], input[type=week],
 input[type=number], input[type=range], input[type=color] {
+  &:extend(.full-width);
   display: block;
   margin: 0;
   padding: 0;
   border: 1px solid #ccc;
   border-radius: 0;
   box-shadow: none;
-  width: 100%;
-  box-sizing: border-box;
   &:read-only {
   }
 }
