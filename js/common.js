@@ -6,38 +6,22 @@ if(!window.console.error) window.console.error = function() {};
 if(!window.console.info) window.console.info = function() {};
 if(!window.console.log) window.console.log = function() {};
 
-// footer
+// sticky footer
 //-----------------------------------------------------------------------------
 if(!Modernizr.flexbox) {
   (function() {
     var
       $pageWrapper = $('#page-wrapper'),
-      footer  = {
-        $element: $('#footer'),
-        height: null,
-        $preFooter: $('<div/>').attr({id: 'pre-footer'}),
-        place: function() {
-          var
-            self = this;
-          self.height = self.$element.outerHeight();
-          if(!$('#pre-footer').length) {
-            $pageWrapper.append(self.$preFooter);
-          }
-          self.$preFooter.height(self.height);
-          self.$element.css({marginTop: -self.height});
-          $pageWrapper.after(self.$element);
-          //.remove();
+      $pageBody = $('#page-body'),
+      noFlexboxStickyFooter = function() {
+        $pageBody.height('auto');
+        if($pageBody.height() + $('#header').outerHeight() + $('#footer').outerHeight() < $(window).height()) {
+          $pageBody.height($(window).height() - $('#header').outerHeight() - $('#footer').outerHeight());
+        } else {
+          $pageWrapper.height('auto');
         }
       };
-
-    $(window).on({
-      load: function () {
-        footer.place();
-      },
-      resize: function () {
-        footer.place();
-      }
-    });
+    $(window).on('load resize', noFlexboxStickyFooter);
   })();
 }
 if(ieDetector.ieVersion == 10 || ieDetector.ieVersion == 11) {
@@ -46,8 +30,7 @@ if(ieDetector.ieVersion == 10 || ieDetector.ieVersion == 11) {
       $pageWrapper = $('#page-wrapper'),
       $pageBody = $('#page-body'),
       ieFlexboxFix = function() {
-        console.log($pageBody.addClass('flex-none').height(), $(window).height());
-        if($pageBody.addClass('flex-none').height() + $('#header').height() + $('#footer').height() < $(window).height()) {
+        if($pageBody.addClass('flex-none').height() + $('#header').outerHeight() + $('#footer').outerHeight() < $(window).height()) {
           $pageWrapper.height($(window).height());
           $pageBody.removeClass('flex-none');
         } else {
@@ -55,9 +38,7 @@ if(ieDetector.ieVersion == 10 || ieDetector.ieVersion == 11) {
         }
       };
     ieFlexboxFix();
-    $(window).on('resize', function () {
-      ieFlexboxFix();
-    });
+    $(window).on('load resize', ieFlexboxFix);
   })();
 }
 
