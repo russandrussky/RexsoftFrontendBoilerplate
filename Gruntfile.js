@@ -102,6 +102,14 @@ module.exports = function (grunt) {
           from: 'style.css"/>',
           to: 'style.min.css"/>'
         }]
+      },
+      beautify: {
+        src: ['./*.html'],
+        dest: './',
+        replacements: [{
+          from: 'style.min.css"/>',
+          to: 'style.css"/>'
+        }]
       }
     },
     watch: {
@@ -175,5 +183,5 @@ module.exports = function (grunt) {
   grunt.registerTask('development', ['concat:development', 'less:development', 'postcss', 'htmlbuild', 'replace:html', 'watch']);
   grunt.registerTask('production', ['concat:production', 'uglify:production', 'less:development', 'postcss', 'htmlbuild', 'replace:html', 'replace:production', 'cssmin:production']);
   grunt.registerTask('production-compress', ['concat:production', 'uglify:production', 'less:development', 'postcss', 'htmlbuild', 'replace', 'cssmin:production']);
-  grunt.registerTask('css-beautify', ['less:beautify', 'postcss']);
+  grunt.registerTask('css-beautify', ['less:beautify', 'postcss', 'replace:beautify']);
 };
