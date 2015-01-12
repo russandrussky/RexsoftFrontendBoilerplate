@@ -69,10 +69,10 @@ module.exports = function (grunt) {
           to: ''
         },{
           from: '.css"/>',
-          to: '.css?v=' + new Date().getTime() + '"/>'
+          to: '.css?timestamp=' + new Date().getTime() + '"/>'
         },{
           from: 'common.js',
-          to: 'common.js?v=' + new Date().getTime()
+          to: 'common.js?timestamp=' + new Date().getTime()
         }]
       },
       production: {
@@ -82,7 +82,7 @@ module.exports = function (grunt) {
           from: '<script src="//localhost:35729/livereload.js"></script>',
           to: ''
         },{
-          from: /\?v=\d+/g,
+          from: /\?timestamp=\d+/g,
           to: ''
         },{
           from: 'style.css"/>',
