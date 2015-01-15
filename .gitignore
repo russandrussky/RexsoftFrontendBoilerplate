@@ -1,11 +1,13 @@
 # Lines starting with '#' are considered comments.
 /.idea
 node_modules
+css
+dev/js/lib
 GruntTemplate.zip
 /*.html
-css
 js/libs.js
 js/production.min.js
 dev/js/production.js
-dev/js/lib
 readme.html
+js/modernizr.js
+

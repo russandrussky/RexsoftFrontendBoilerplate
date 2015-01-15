@@ -169,6 +169,44 @@ module.exports = function (grunt) {
           './css/style.min.css': ['./css/style.css']
         }
       }
+    },
+    modernizr: {
+      dist: {
+        // [REQUIRED] Path to the build you're using for development.
+        "devFile" : "remote",
+
+        // Path to save out the built file.
+        "outputFile" : "js/modernizr.js",
+
+        // Based on default settings on http://modernizr.com/download/
+        "extra" : {
+          "shiv" : true,
+          "printshiv" : false,
+          "load" : true,
+          "mq" : false,
+          "cssclasses" : true
+        },
+
+        // Based on default settings on http://modernizr.com/download/
+        "extensibility" : {
+          "addtest" : false,
+          "prefixed" : true,
+          "teststyles" : false,
+          "testprops" : true,
+          "testallprops" : true,
+          "hasevents" : false,
+          "prefixes" : false,
+          "domprefixes" : true,
+          "cssclassprefix": ""
+        },
+        "parseFiles" : true,
+        "matchCommunityTests" : true,
+        "tests" : [
+          'svg',
+          //'flexbox',
+          'css-vhunit'
+        ]
+      }
     }
   });
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -180,8 +218,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-csso');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.registerTask('development', ['concat:development', 'less:development', 'postcss', 'htmlbuild', 'replace:html', 'watch']);
-  grunt.registerTask('production', ['concat:production', 'uglify:production', 'less:development', 'postcss', 'htmlbuild', 'replace:html', 'replace:production', 'cssmin:production']);
-  grunt.registerTask('production-compress', ['concat:production', 'uglify:production', 'less:development', 'postcss', 'htmlbuild', 'replace', 'cssmin:production']);
+  grunt.loadNpmTasks("grunt-modernizr");
+  grunt.registerTask('development', ['concat:development', 'less:development', 'postcss', 'htmlbuild', 'replace:html', 'modernizr', 'watch']);
+  grunt.registerTask('production', ['concat:production', 'uglify:production', 'less:development', 'postcss', 'htmlbuild', 'replace:html', 'replace:production', 'cssmin:production', 'modernizr']);
+  grunt.registerTask('production-compress', ['concat:production', 'uglify:production', 'less:development', 'postcss', 'htmlbuild', 'replace', 'cssmin:production', 'modernizr']);
   grunt.registerTask('css-beautify', ['less:beautify', 'postcss', 'replace:beautify']);
 };
