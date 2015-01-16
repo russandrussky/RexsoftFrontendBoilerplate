@@ -191,7 +191,7 @@ module.exports = function (grunt) {
         "extensibility" : {
           "addtest" : false,
           "prefixed" : true,
-          "teststyles" : false,
+          "teststyles" : true,
           "testprops" : true,
           "testallprops" : true,
           "hasevents" : false,
@@ -199,12 +199,11 @@ module.exports = function (grunt) {
           "domprefixes" : true,
           "cssclassprefix": ""
         },
-        "parseFiles" : true,
+        "parseFiles" : false,
         "matchCommunityTests" : true,
-        "tests" : [
+        "tests" : [ // https://github.com/Modernizr/grunt-modernizr/blob/master/lib/customappr.js#L2-111
           'svg',
-          //'flexbox',
-          'css-vhunit'
+          'flexbox',
         ]
       }
     }
